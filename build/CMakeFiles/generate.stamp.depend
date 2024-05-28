@@ -1,0 +1,89 @@
+# CMake generation dependency list for this directory.
+C:/Program Files/CMake/share/cmake-3.29/Modules/CMakeCInformation.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/CMakeCXXInformation.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/CMakeDependentOption.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/CMakeFindDependencyMacro.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/CMakeGenericSystem.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/CMakeRCInformation.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/CheckIncludeFile.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/CheckLibraryExists.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/Compiler/MSVC-C.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/Compiler/MSVC-CXX.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/Compiler/MSVC.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/FindThreads.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/FindZLIB.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/Platform/Windows-Initialize.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/Platform/Windows-MSVC-C.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/Platform/Windows-MSVC-CXX.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/Platform/Windows-MSVC.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/Platform/Windows.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/Platform/WindowsPaths.cmake
+C:/Program Files/CMake/share/cmake-3.29/Modules/SelectLibraryConfigurations.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/assimp/assimpConfig.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/assimp/assimpConfigVersion.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/assimp/assimpTargets-debug.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/assimp/assimpTargets-release.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/assimp/assimpTargets.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/glad/gladConfig.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/glad/gladConfigVersion.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/glad/gladTargets-debug.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/glad/gladTargets-release.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/glad/gladTargets.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/glfw3/glfw3Config.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/glfw3/glfw3ConfigVersion.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/glfw3/glfw3Targets-debug.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/glfw3/glfw3Targets-release.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/glfw3/glfw3Targets.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/glm/glmConfig-debug.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/glm/glmConfig-release.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/glm/glmConfig.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/glm/glmConfigVersion.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/imgui/imgui-config.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/imgui/imgui-targets-debug.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/imgui/imgui-targets-release.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/imgui/imgui-targets.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/kubazip/kubazipConfig.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/kubazip/kubazipConfigVersion.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/kubazip/kubazipTargets-debug.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/kubazip/kubazipTargets-release.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/kubazip/kubazipTargets.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/poly2tri/poly2triConfig-debug.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/poly2tri/poly2triConfig-release.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/poly2tri/poly2triConfig.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/polyclipping/polyclippingConfig-debug.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/polyclipping/polyclippingConfig-release.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/polyclipping/polyclippingConfig.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/pugixml/pugixml-config-version.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/pugixml/pugixml-config.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/pugixml/pugixml-targets-debug.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/pugixml/pugixml-targets-release.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/pugixml/pugixml-targets.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/rapidjson/RapidJSONConfig.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/rapidjson/RapidJSONConfigVersion.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/stb/FindStb.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/stb/vcpkg-cmake-wrapper.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/unofficial-minizip/unofficial-minizipConfig.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/unofficial-minizip/unofficial-minizipConfigVersion.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/unofficial-minizip/unofficial-minizipTargets-debug.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/unofficial-minizip/unofficial-minizipTargets-release.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/unofficial-minizip/unofficial-minizipTargets.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/utf8cpp/utf8cppConfig.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/utf8cpp/utf8cppConfigVersion.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/utf8cpp/utf8cppTargets.cmake
+C:/Users/zyhru/PackageManager/vcpkg/installed/x64-windows-static/share/zlib/vcpkg-cmake-wrapper.cmake
+C:/Users/zyhru/PackageManager/vcpkg/scripts/buildsystems/vcpkg.cmake
+C:/Users/zyhru/Projects/Graphics/CMakeLists.txt
+C:/Users/zyhru/Projects/Graphics/build/CMakeFiles/3.29.0-rc1/CMakeCCompiler.cmake
+C:/Users/zyhru/Projects/Graphics/build/CMakeFiles/3.29.0-rc1/CMakeCXXCompiler.cmake
+C:/Users/zyhru/Projects/Graphics/build/CMakeFiles/3.29.0-rc1/CMakeRCCompiler.cmake
+C:/Users/zyhru/Projects/Graphics/build/CMakeFiles/3.29.0-rc1/CMakeSystem.cmake

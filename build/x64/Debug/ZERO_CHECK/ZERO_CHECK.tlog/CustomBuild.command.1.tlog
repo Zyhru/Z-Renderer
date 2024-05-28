@@ -1,0 +1,10 @@
+^C:\USERS\ZYHRU\PROJECTS\GRAPHICS\BUILD\CMAKEFILES\B0ADACC4AE0B2A5388E3AED2FC9586C3\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/zyhru/Projects/Graphics -BC:/Users/zyhru/Projects/Graphics/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/zyhru/Projects/Graphics/build/Engine.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
