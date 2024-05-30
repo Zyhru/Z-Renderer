@@ -4,6 +4,7 @@
 
 #include "Shader.h"
 #include "Camera.h"
+#include "Importer.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -16,6 +17,7 @@ float lastFrame = 0.0f;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void fov_slider_callback(GLFWwindow* window, double xoffset, double yoffset);
+void importObjFile();
 
 Camera camera;
 
@@ -101,6 +103,26 @@ float vertices[] = {
   //glBindVertexArray(0); // TODO: Look this up
   glEnable(GL_DEPTH_TEST);
 
+  // TODO: Fix absoulte path -> relative path
+  Importer import;
+  Obj obj = import.ReadFile("C:\\Users\\zyhru\\Projects\\Graphics\\box.obj");
+
+  // Iterate through each mesh and print out its vertices
+  std::cout << "Printing .obj contents" << std::endl;
+  for(auto& x : obj.meshes) {
+
+    /* Printing out vertices in all meshes */
+    for(auto& y : x._vertices) {
+      std::cout << "{" << y.x << "," << y.y << "," << y.z << "}" << std::endl;
+    }
+
+    /* Printing out indices in all meshes */
+    std::cout << "\n"; 
+    for(auto& z : x._indices) {
+      std::cout << z << std::endl;
+    }
+  } 
+
   while(!glfwWindowShouldClose(window)) {
 
     float currentFrame = glfwGetTime();
@@ -157,6 +179,11 @@ float vertices[] = {
   return 0;
 
 }
+
+
+// void importObjFile() {
+  //const Obj* obj = Importer::ReadFile("box.obj");
+//}
 
 void fov_slider_callback(GLFWwindow *window, double xoffset, double yoffset) {
   camera.AdjustFov(yoffset);

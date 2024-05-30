@@ -8,8 +8,11 @@ add_executable(Engine
 	src/main.cpp
 	src/Shader.cpp
 	src/Camera.cpp
+	src/Importer.cpp
+	src/Mesh.cpp
 
 )
+
 #add_executable(Engine src/*.cpp)
 
 # Find packages
