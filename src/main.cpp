@@ -17,7 +17,6 @@ float lastFrame = 0.0f;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void fov_slider_callback(GLFWwindow* window, double xoffset, double yoffset);
-void importObjFile();
 
 Camera camera;
 
@@ -105,23 +104,7 @@ float vertices[] = {
 
   // TODO: Fix absoulte path -> relative path
   Importer import;
-  Obj obj = import.ReadFile("C:\\Users\\zyhru\\Projects\\Graphics\\box.obj");
-
-  // Iterate through each mesh and print out its vertices
-  std::cout << "Printing .obj contents" << std::endl;
-  for(auto& x : obj.meshes) {
-
-    /* Printing out vertices in all meshes */
-    for(auto& y : x._vertices) {
-      std::cout << "{" << y.x << "," << y.y << "," << y.z << "}" << std::endl;
-    }
-
-    /* Printing out indices in all meshes */
-    std::cout << "\n"; 
-    for(auto& z : x._indices) {
-      std::cout << z << std::endl;
-    }
-  } 
+  import.ReadFile("C:\\Users\\zyhru\\Projects\\Graphics\\box.obj");
 
   while(!glfwWindowShouldClose(window)) {
 
@@ -139,7 +122,6 @@ float vertices[] = {
     camera.LookAround(xpos, ypos);
 
     // =========================================================
-
 
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -160,30 +142,23 @@ float vertices[] = {
     viewLocation = glGetUniformLocation(shader._shaderID, "view");
     glUniformMatrix4fv(viewLocation, 1, GL_FALSE, glm::value_ptr(view));
     
-    // 3D Object
-    glBindVertexArray(VAO);
+    //glBindVertexArray(VAO);
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::rotate(model, (float) glfwGetTime() * 0.5f, glm::vec3(1.0f, 1.0f, 0.0f));
-    //model = glm::translate(model, glm::vec3(0.0f, 0.0f, 2.0f));
-    //model = glm::scale(model, glm::vec3(1.0f, 0.0f, 1.0f));
     modelLocation = glGetUniformLocation(shader._shaderID, "model");
     glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(model));
-
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-    glBindVertexArray(0);
+    
+     import.Render(shader); // Test
+      
+     glDrawArrays(GL_TRIANGLES, 0, 36);
+     glBindVertexArray(0);
 
     glfwPollEvents();
     glfwSwapBuffers(window);
   }
 
   return 0;
-
 }
-
-
-// void importObjFile() {
-  //const Obj* obj = Importer::ReadFile("box.obj");
-//}
 
 void fov_slider_callback(GLFWwindow *window, double xoffset, double yoffset) {
   camera.AdjustFov(yoffset);
