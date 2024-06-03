@@ -1,8 +1,8 @@
 #include "Importer.h"
 #include <cstdlib>
 
-template <typename T> std::vector<T> Importer::split(std::string str, std::string delim) {
- 
+template <typename T> 
+std::vector<T> Importer::split(std::string str, std::string delim) {
 	size_t start_pos = 0;
 	size_t end_pos   = 0;
 
@@ -68,33 +68,34 @@ void Importer::ReadFile(std::string path) {
 	std::string line;
 	std::string delim = " ";
 
-	std::vector<float> split_f;
-	std::vector<unsigned int> split_ui;
-	std::vector<Vertex> v_list;
-	std::vector<unsigned int> i_list;
+	std::vector<float> parsedVertices;
+	std::vector<unsigned int> parsedIndices;
+	std::vector<Vertex> vertices;
+	std::vector<unsigned int> indices;
 
 	/* Parse .obj file */
 	while(std::getline(file, line)) {
 
 		if(line[0] == 'v') {
-
-			Vertex v;
-			split_f = split<float>(line, delim);
-			v.x = split_f[1];
-			v.y = split_f[2];
-			v.z = split_f[3];
-			v_list.push_back(v);
+			Vertex v = {};
+			parsedVertices = split<float>(line, delim);
+			
+			glm::vec3 vector;
+			vector.x = parsedVertices[1];
+			vector.y = parsedVertices[2];
+			vector.z = parsedVertices[3];
+			v.vertex = vector;
+			vertices.push_back(v);
 
 		} else if(line[0] == 'f') {
-
-			split_ui = split<unsigned int>(line, delim); 
-			for(int i = 1; i < split_ui.size(); i++) {
-			  i_list.push_back(split_ui[i]); 
+			parsedIndices = split<unsigned int>(line, delim); 
+			for(int i = 1; i < parsedIndices.size(); i++) {
+			  indices.push_back(parsedIndices[i] - 1); 
 			}
 		}
 	}
 	
-	Mesh mesh(v_list, i_list); 
+	Mesh mesh(vertices, indices); 
 	m_meshes.push_back(mesh);
 	std::cout << "End of Importer::ReadFile function" << "\n";
 }

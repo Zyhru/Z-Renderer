@@ -88,16 +88,16 @@ float vertices[] = {
   shader.Load("C:\\Users\\zyhru\\Projects\\Graphics\\vertex.vert", "C:\\Users\\zyhru\\Projects\\Graphics\\fragment.frag");
 
   unsigned int VAO, VBO;
-  glGenVertexArrays(1, &VAO);
-  glGenBuffers(1, &VBO);
+  //glGenVertexArrays(1, &VAO);
+  //glGenBuffers(1, &VBO);
 
-  glBindVertexArray(VAO);
+  //glBindVertexArray(VAO);
   
-  glBindBuffer(GL_ARRAY_BUFFER, VBO);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+  //glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  //glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-  glEnableVertexAttribArray(0);
+  //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+  //glEnableVertexAttribArray(0);
 
   //glBindVertexArray(0); // TODO: Look this up
   glEnable(GL_DEPTH_TEST);
@@ -127,31 +127,32 @@ float vertices[] = {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Render
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     shader.Use();
 
     int modelLocation, projectionLocation, viewLocation;
-    glm::mat4 view = glm::mat4(1.0f); // Camera
+    glm::mat4 view = glm::mat4(1.0f); 
     glm::mat4 projection = glm::mat4(1.0f);
     projection = glm::perspective(glm::radians(camera._fov), 800.0f / 600.0f , 0.1f, 100.0f);
     view = camera.LookAtMatrix();
-    view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
 
     projectionLocation = glGetUniformLocation(shader._shaderID, "projection");
     glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, glm::value_ptr(projection));
-   
+    
     viewLocation = glGetUniformLocation(shader._shaderID, "view");
     glUniformMatrix4fv(viewLocation, 1, GL_FALSE, glm::value_ptr(view));
     
     //glBindVertexArray(VAO);
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::rotate(model, (float) glfwGetTime() * 0.5f, glm::vec3(1.0f, 1.0f, 0.0f));
+   // model = glm::rotate(model, (float) glfwGetTime() * 0.5f, glm::vec3(1.0f, 1.0f, 0.0f));
+    model = glm::translate(model, glm::vec3(0.0f,0.0f,-2.0f));
     modelLocation = glGetUniformLocation(shader._shaderID, "model");
     glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(model));
     
-     import.Render(shader); // Test
+    import.Render(shader);
       
-     glDrawArrays(GL_TRIANGLES, 0, 36);
-     glBindVertexArray(0);
+   //glDrawArrays(GL_TRIANGLES, 0, 36);
+   //glBindVertexArray(0);
 
     glfwPollEvents();
     glfwSwapBuffers(window);

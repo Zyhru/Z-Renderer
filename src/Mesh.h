@@ -2,13 +2,12 @@
 
 #include <vector>
 #include <glad/glad.h>
+#include <glm/glm.hpp>
 #include "Shader.h"
 
 
 struct Vertex {
-	float x;
-	float y;
-	float z;
+	glm::vec3 vertex;
 };
 
 class Mesh {
@@ -16,18 +15,16 @@ class Mesh {
 	public:
 		std::vector<Vertex> m_vertices;
 		std::vector<unsigned int> m_indices;
+		
+		unsigned int VAO, VBO, EBO;
 
-		unsigned int VAO;
-		unsigned int VBO;
-		unsigned int EBO;
-
-		Mesh(std::vector<Vertex>& vertices, std::vector<unsigned int>& indices);
+		Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
 		void Render(Shader &shader);
+
+	private:
 		void initMesh();
 		void processVertices();
 		void processIndices();
-
 		
-
 
 };
