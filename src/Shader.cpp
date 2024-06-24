@@ -67,6 +67,12 @@ void Shader::SetBool(const std::string &name, bool value) {
 }
 
 
+void Shader::SetMat4(const std::string &name, glm::mat4& value) {
+	int location = glGetUniformLocation(_shaderID, name.c_str());
+	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
+}
+
+
 void Shader::CheckForCompileErrors(unsigned int shader, std::string type) {
 
 

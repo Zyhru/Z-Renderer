@@ -2,112 +2,109 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-#include "Shader.h"
 #include "Camera.h"
 #include "Importer.h"
+#include "Shader.h"
 
 #include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
-const int HEIGHT = 600;
-const int WIDTH  = 800;
+Camera camera;
+const unsigned int HEIGHT = 600;
+const unsigned int WIDTH = 800;
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void fov_slider_callback(GLFWwindow* window, double xoffset, double yoffset);
+void framebuffer_size_callback(GLFWwindow *window, int width, int height);
+void fov_slider_callback(GLFWwindow *window, double xoffset, double yoffset);
 
-Camera camera;
+glm::vec3 lightPos(0.0f, 0.0f, 2.0f);
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
+  if (!glfwInit()) return -1;
+   
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-  if(!glfwInit()) return -1;
+  GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Z-Renderer", nullptr, nullptr);
+  if (window == NULL) {
+    std::cerr << "Failed to create window" << std::endl;
+    return -1;
+  }
 
-  GLFWwindow* window = nullptr;
-  window = glfwCreateWindow(WIDTH, HEIGHT, "Z-Renderer", nullptr, nullptr);
-  
   glfwMakeContextCurrent(window);
   glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
   glfwSetScrollCallback(window, fov_slider_callback);
-  
-  if(!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
+
+  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
     std::cout << "Failed to init Glad" << std::endl;
     return -1;
   }
 
-// TODO: Use an index buffer
-float vertices[] = {
+  // TODO: Use an index buffer
+  float vertices[] = {
 
-    // position
-    -0.5f, -0.5f, -0.5f,
-     0.5f, -0.5f, -0.5f,
-     0.5f,  0.5f, -0.5f,
-     0.5f,  0.5f, -0.5f,
-    -0.5f,  0.5f, -0.5f,
-    -0.5f, -0.5f, -0.5f,
+      // position
+      -0.5f, -0.5f, -0.5f, 0.5f,  -0.5f, -0.5f, 0.5f,  0.5f,  -0.5f,
+      0.5f,  0.5f,  -0.5f, -0.5f, 0.5f,  -0.5f, -0.5f, -0.5f, -0.5f,
 
-    -0.5f, -0.5f,  0.5f,
-     0.5f, -0.5f,  0.5f,
-     0.5f,  0.5f,  0.5f,
-     0.5f,  0.5f,  0.5f,
-    -0.5f,  0.5f,  0.5f,
-    -0.5f, -0.5f,  0.5f,
+      -0.5f, -0.5f, 0.5f,  0.5f,  -0.5f, 0.5f,  0.5f,  0.5f,  0.5f,
+      0.5f,  0.5f,  0.5f,  -0.5f, 0.5f,  0.5f,  -0.5f, -0.5f, 0.5f,
 
-    -0.5f,  0.5f,  0.5f,
-    -0.5f,  0.5f, -0.5f,
-    -0.5f, -0.5f, -0.5f,
-    -0.5f, -0.5f, -0.5f,
-    -0.5f, -0.5f,  0.5f,
-    -0.5f,  0.5f,  0.5f,
+      -0.5f, 0.5f,  0.5f,  -0.5f, 0.5f,  -0.5f, -0.5f, -0.5f, -0.5f,
+      -0.5f, -0.5f, -0.5f, -0.5f, -0.5f, 0.5f,  -0.5f, 0.5f,  0.5f,
 
-     0.5f,  0.5f,  0.5f,
-     0.5f,  0.5f, -0.5f,
-     0.5f, -0.5f, -0.5f,
-     0.5f, -0.5f, -0.5f,
-     0.5f, -0.5f,  0.5f,
-     0.5f,  0.5f,  0.5f,
+      0.5f,  0.5f,  0.5f,  0.5f,  0.5f,  -0.5f, 0.5f,  -0.5f, -0.5f,
+      0.5f,  -0.5f, -0.5f, 0.5f,  -0.5f, 0.5f,  0.5f,  0.5f,  0.5f,
 
-    -0.5f, -0.5f, -0.5f,
-     0.5f, -0.5f, -0.5f,
-     0.5f, -0.5f,  0.5f,
-     0.5f, -0.5f,  0.5f,
-    -0.5f, -0.5f,  0.5f,
-    -0.5f, -0.5f, -0.5f,
+      -0.5f, -0.5f, -0.5f, 0.5f,  -0.5f, -0.5f, 0.5f,  -0.5f, 0.5f,
+      0.5f,  -0.5f, 0.5f,  -0.5f, -0.5f, 0.5f,  -0.5f, -0.5f, -0.5f,
 
-    -0.5f,  0.5f, -0.5f,
-     0.5f,  0.5f, -0.5f,
-     0.5f,  0.5f,  0.5f,
-     0.5f,  0.5f,  0.5f,
-    -0.5f,  0.5f,  0.5f,
-    -0.5f,  0.5f, -0.5f
-};
+      -0.5f, 0.5f,  -0.5f, 0.5f,  0.5f,  -0.5f, 0.5f,  0.5f,  0.5f,
+      0.5f,  0.5f,  0.5f,  -0.5f, 0.5f,  0.5f,  -0.5f, 0.5f,  -0.5f};
 
-  Shader shader;
-  shader.Load("C:\\Users\\zyhru\\Projects\\Graphics\\vertex.vert", "C:\\Users\\zyhru\\Projects\\Graphics\\fragment.frag");
+  Shader shader, lightShader;
+  shader.Load("C:\\Users\\zyhru\\Projects\\Graphics\\vertex.vert",
+              "C:\\Users\\zyhru\\Projects\\Graphics\\fragment.frag");
+
+
+
+  #if 0
+  lightShader.Load("C:\\Users\\zyhru\\Projects\\Graphics\\lightvertex.vert",
+              "C:\\Users\\zyhru\\Projects\\Graphics\\lightfragment.frag");
 
   unsigned int VAO, VBO;
-  //glGenVertexArrays(1, &VAO);
-  //glGenBuffers(1, &VBO);
+  glGenVertexArrays(1, &VAO);
+  glGenBuffers(1, &VBO);
 
-  //glBindVertexArray(VAO);
-  
-  //glBindBuffer(GL_ARRAY_BUFFER, VBO);
-  //glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+  glBindVertexArray(VAO);
 
-  //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-  //glEnableVertexAttribArray(0);
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-  //glBindVertexArray(0); // TODO: Look this up
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
+   (void*)0);
+  glEnableVertexAttribArray(0);
+
+  unsigned int lightVAO;
+  glGenVertexArrays(1, &lightVAO);
+  glBindVertexArray(lightVAO);
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+  glEnableVertexAttribArray(0);
+  #endif
+
+ // glBindVertexArray(0); // TODO: Look this up
   glEnable(GL_DEPTH_TEST);
 
   // TODO: Fix absoulte path -> relative path
   Importer import;
-  import.ReadFile("C:\\Users\\zyhru\\Projects\\Graphics\\box.obj");
+  import.ReadFile("C:\\Users\\zyhru\\Projects\\Graphics\\box_stack.obj", QUADTOTRIANGLE);
 
-  while(!glfwWindowShouldClose(window)) {
-
+  while (!glfwWindowShouldClose(window)) {
     float currentFrame = glfwGetTime();
     deltaTime = currentFrame - lastFrame;
     lastFrame = currentFrame;
@@ -125,34 +122,48 @@ float vertices[] = {
 
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // TODO: create a toggle 
 
     // Render
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     shader.Use();
 
-    int modelLocation, projectionLocation, viewLocation;
-    glm::mat4 view = glm::mat4(1.0f); 
-    glm::mat4 projection = glm::mat4(1.0f);
-    projection = glm::perspective(glm::radians(camera._fov), 800.0f / 600.0f , 0.1f, 100.0f);
-    view = camera.LookAtMatrix();
+    #if 0
+    // Set color
+    glm::vec3 lightColor  = glm::vec3(1.0, 1.0f, 1.0f);
+    glm::vec3 objectColor = glm::vec3(0.5f, 0.2f, 0.4f);
+    int lightColorLocation, objectColorLocation;
+    lightColorLocation  = glGetUniformLocation(shader._shaderID, "lightColor");
+    objectColorLocation = glGetUniformLocation(shader._shaderID, "objectColor");
+    glUniform3f(lightColorLocation, lightColor.x, lightColor.y, lightColor.z);
+    glUniform3f(objectColorLocation, objectColor.x, objectColor.y, objectColor.z);
+    #endif
 
-    projectionLocation = glGetUniformLocation(shader._shaderID, "projection");
-    glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, glm::value_ptr(projection));
-    
-    viewLocation = glGetUniformLocation(shader._shaderID, "view");
-    glUniformMatrix4fv(viewLocation, 1, GL_FALSE, glm::value_ptr(view));
-    
-    //glBindVertexArray(VAO);
+    glm::mat4 view = glm::mat4(1.0f);
+    glm::mat4 projection = glm::mat4(1.0f);
+    projection = glm::perspective(glm::radians(camera._fov), 800.0f / 600.0f, 0.1f, 100.0f);
+    view = camera.LookAtMatrix();
+    shader.SetMat4("projection", projection);
+    shader.SetMat4("view", view);
+
     glm::mat4 model = glm::mat4(1.0f);
-   // model = glm::rotate(model, (float) glfwGetTime() * 0.5f, glm::vec3(1.0f, 1.0f, 0.0f));
-    model = glm::translate(model, glm::vec3(0.0f,0.0f,-2.0f));
-    modelLocation = glGetUniformLocation(shader._shaderID, "model");
-    glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(model));
-    
+    shader.SetMat4("model", model);
     import.Render(shader);
-      
-   //glDrawArrays(GL_TRIANGLES, 0, 36);
-   //glBindVertexArray(0);
+    
+    // Render Light Cube (Acts as a lamp)
+    #if 0
+    lightShader.Use();
+    lightShader.SetMat4("projection", projection);
+    lightShader.SetMat4("view", view);
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, lightPos);
+    model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+    lightShader.SetMat4("model", model);
+    import.Render(lightShader);
+    #endif
+    
+    //glBindVertexArray(lightVAO);
+    //glDrawArrays(GL_TRIANGLES, 0, 36);
+    //glBindVertexArray(0);
 
     glfwPollEvents();
     glfwSwapBuffers(window);
@@ -165,6 +176,6 @@ void fov_slider_callback(GLFWwindow *window, double xoffset, double yoffset) {
   camera.AdjustFov(yoffset);
 }
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
-  glViewport(0,0,width,height);
+void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
+  glViewport(0, 0, width, height);
 }

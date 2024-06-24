@@ -6,14 +6,19 @@ void Camera::MoveCamera(GLFWwindow *window, float deltaTime) {
     glfwSetWindowShouldClose(window, true);
   }
 
+  //std::cout << "{DEBUG}: MOVING CAMERA" << std::endl;
   float velocity = _speed * deltaTime;
   if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+   // std::cout << "{DEBUG} MoveCamera::W" << std::endl;
     _pos += _front * velocity;
   } else if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+    //std::cout << "{DEBUG} MoveCamera::S" << std::endl;
     _pos -= _front * velocity;
   } else if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+    //std::cout << "{DEBUG} MoveCamera::A" << std::endl;
     _pos -= glm::normalize(glm::cross(_front, _up)) * velocity;
   } else if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+    //std::cout << "{DEBUG} MoveCamera::D" << std::endl;
     _pos += glm::normalize(glm::cross(_front, _up)) * velocity;
   }
 

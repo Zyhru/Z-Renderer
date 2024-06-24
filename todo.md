@@ -4,6 +4,13 @@
 - [x] Creating Mesh object gives me a vector subscript out range error
 - [x] Process faces and vertices at the same time 
 - [x] Able to render mesh
-- [ ] Figure out why the full mesh isn't being rendered
-        - possible indices being lost?
+- [x] Figure out why the full mesh isn't being rendered
+        - possible indices being lost? (glDrawElements(GL_QUADS)) instead of GL_TRIANGLES because I was parsing quad indices.
+- [x] Add an option to either parse QUADS or TRIANGLES. (Maybe add a flag)
+- [x] Parse texture normals and texture coords 
+- [ ] Parse material (usemtl) 
+- [ ] Change absolute path input on Import.ReadFile to the relative path input
+- [ ] Render bag model 
+- [ ] Implement a toggle for glPolygon -> FILL and NONE? 
+- [x] Bug: when vt is added to .obj file then it crashes
 
